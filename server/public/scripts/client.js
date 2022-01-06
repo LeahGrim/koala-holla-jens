@@ -49,7 +49,20 @@ function renderKoalas(koala) {
   $('#viewKoalas').empty();
   for (let i = 0; i < koala.length; i += 1) {
   let koalas = koala[i]
-    // For each koala, append a new row to our table
+  if(koalas.ready_to_transfer === false){
+     $('#viewKoalas').append(`
+      <tr>
+        <td>${koalas.name}</td>
+        <td>${koalas.gender}</td>
+        <td>${koalas.age}</td>
+        <td>${koalas.ready_to_transfer}</td>
+        <td>${koalas.notes}</td>
+        <td><button class="deleteButton">delete</button></td>
+        <td><button class="readyToTransfer">ready to transfer</button></td>
+      </tr>
+    `);
+  }
+  else {
     $('#viewKoalas').append(`
       <tr>
         <td>${koalas.name}</td>
@@ -58,9 +71,11 @@ function renderKoalas(koala) {
         <td>${koalas.ready_to_transfer}</td>
         <td>${koalas.notes}</td>
         <td><button class="deleteButton">delete</button></td>
-        <td><button class="readyForTransfer">Mark as read</button></td>
       </tr>
     `);
+  }
+    // For each koala, append a new row to our table
+   
   }
 }
 
