@@ -25,6 +25,30 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
+
+  $(document).on('click', '.readyToTransfer', function() {
+    console.log('in readyToTransfer');
+    
+    let koalaId = $(this).parents('tr').data('id');
+    let ready_to_transfer = $(this).parents('tr').data('ready_to_transfer');
+    $.ajax({
+      method: 'PUT',
+      url: `/koalas/${koalaId}`,
+      //pass updated version to server 
+      //ie transfer a representation of state
+      data: {
+        ready_to_transfer: ready_to_transfer = true
+      }
+    })
+      .then(() => {
+        console.log('put success');
+        renderKoalas();
+      })
+      .catch((err) => {
+        console.log('put failed', err);
+
+      })
+  })
 }
 
 function getKoalas(){
@@ -51,13 +75,13 @@ function renderKoalas(koala) {
   let koalas = koala[i]
   if(koalas.ready_to_transfer === false){
      $('#viewKoalas').append(`
-      <tr>
+      <tr tr data-id = "${koalas.ready_to_transfer}" data-id = "${koalas.id}">
         <td>${koalas.name}</td>
         <td>${koalas.gender}</td>
         <td>${koalas.age}</td>
         <td>${koalas.ready_to_transfer}</td>
         <td>${koalas.notes}</td>
-        <td><button class="deleteButton">delete</button></td>
+        <td><button id="deleteButton">delete</button></td>
         <td><button class="readyToTransfer">ready to transfer</button></td>
       </tr>
     `);
