@@ -5,7 +5,7 @@ CREATE TABLE "koala" (
 	age NUMERIC,
 	ready_to_transfer BOOLEAN DEFAULT FALSE,
 	notes VARCHAR(1000)
-
+	);
 INSERT INTO "koala" 
 	("name", "gender", "age", "ready_to_transfer", "notes") 
 VALUES 
@@ -15,6 +15,4 @@ VALUES
 	('Logan', 'M', '15', 'FALSE','Loves the sauna'),
 	('Charlie', 'M', '9', 'TRUE','Favorite band is Nirvana'),
 	('Betsy', 'F', '4', 'TRUE','Have a pet iguana');
-
-
-
+SELECT * FROM koala;
