@@ -20,8 +20,8 @@ koalaRouter.get('/', (req, res) => {
 
 // POST
 koalaRouter.post('/', (req, res) => {
-    let newKoala = req.body;
-    console.log('new koala to be added ', newKoala);
+    //let newKoala = req.body;
+    console.log('new koala to be added ', req.body);
     let queryText= ` INSERT INTO "koala" ("name", "gender", "age", "ready_to_transfer", "notes")
                      VALUES ($1, $2, $3, $4, $5);`
     let queryParams= [
