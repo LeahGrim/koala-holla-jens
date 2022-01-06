@@ -37,7 +37,7 @@ function setupClickListeners() {
       //pass updated version to server 
       //ie transfer a representation of state
       data: {
-        ready_to_transfer: ready_to_transfer = true
+        ready_to_transfer: true
       }
     })
       .then(() => {
@@ -58,7 +58,7 @@ function getKoalas(){
     type: 'GET',
     url: '/koalas'
   }).then(function (response) {
-    console.log(response);
+    console.log('response is', response);
     renderKoalas(response);
   }).catch(function (error) {
     console.log('error in GET', error);
@@ -75,7 +75,7 @@ function renderKoalas(koala) {
   let koalas = koala[i]
   if(koalas.ready_to_transfer === false){
      $('#viewKoalas').append(`
-      <tr tr data-id = "${koalas.ready_to_transfer}" data-id = "${koalas.id}">
+      <tr data-ready_to_transfer = "${koalas.ready_to_transfer}" data-id = "${koalas.id}">
         <td>${koalas.name}</td>
         <td>${koalas.gender}</td>
         <td>${koalas.age}</td>

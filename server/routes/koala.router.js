@@ -24,7 +24,7 @@ koalaRouter.get('/', (req, res) => {
 // PUT
 koalaRouter.put('/:koalaId', (req, res) => {
     console.log('koalaId is ', req.params.koalaId);
-    console.log('req.body is', req.body);
+    console.log('req.body is', req.body.ready_to_transfer);
 
     let queryText = `
     UPDATE "koala"
