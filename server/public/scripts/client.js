@@ -22,6 +22,7 @@ function setupClickListeners() {
       readyForTransfer: $('#readyForTransferIn').val(),
       notes: $('#notesIn').val(),
     };
+    console.log('this is koalaToSend', koalaToSend)
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
@@ -79,12 +80,12 @@ function renderKoalas(koala) {
   }
 }
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
+function saveKoala( koalaToSend ){
+  console.log( 'in saveKoala', koalaToSend );
   // ajax call to server to get koalas
   $.ajax({
     type: 'POST',
-    url: '/songs',
+    url: '/koalas',
     data: koalaToSend
   })
     .then( function (response) {
