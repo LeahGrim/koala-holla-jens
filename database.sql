@@ -7,7 +7,7 @@ CREATE TABLE "koala" (
 	notes VARCHAR(1000)
 	);
 INSERT INTO "koala" 
-	("name", "gender", "age", "ready_to_transfer", "notes") 
+	("name", "gender", "age", "ready_to_transfer", "notes" ) 
 VALUES 
 	('Scotty', 'M', '4', 'TRUE','Born in Guatemala'),
 	('Jean', 'F', '5', 'TRUE','Allergic to lots of lava'),
