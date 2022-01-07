@@ -6,6 +6,9 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+   //working through the delete button 
+    //now let's call the delete function upon click of the delete button
+    $(document).on('click', '.deleteButton', deleteKoala);
 
 }); // end doc ready
 
@@ -26,9 +29,7 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
 
-    //working through the delete button 
-    //now let's call the delete function upon click of the delete button
-    $(document).on('click', '.deleteButton', deleteKoala);
+   
   }); 
 
   $(document).on('click', '.readyToTransfer', function() {
@@ -66,7 +67,7 @@ function deleteKoala(){
   })
   .then((res) => {
     console.log('delete success!!!');
-    renderKoalas();
+    getKoalas();
   })
   .catch((err) => {
     console.log('delete failed', err);
