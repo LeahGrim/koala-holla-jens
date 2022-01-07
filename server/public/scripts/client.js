@@ -6,6 +6,9 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+   //working through the delete button 
+    //now let's call the delete function upon click of the delete button
+    $(document).on('click', '.deleteButton', deleteKoala);
 
 }); // end doc ready
 
@@ -25,6 +28,8 @@ function setupClickListeners() {
     console.log('this is koalaToSend', koalaToSend)
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
+
+   
   }); 
 
   $(document).on('click', '.readyToTransfer', function() {
@@ -52,6 +57,23 @@ function setupClickListeners() {
   })
 }
 
+//now let's write the delete button function : 
+
+function deleteKoala(){
+  let koalaId = $(this).parents('tr').data('id');
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`
+  })
+  .then((res) => {
+    console.log('delete success!!!');
+    getKoalas();
+  })
+  .catch((err) => {
+    console.log('delete failed', err);
+  })
+};
+
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
@@ -76,7 +98,11 @@ function renderKoalas(koala ) {
   let koalas = koala[i]
   if(koalas.ready_to_transfer === false){
      $('#viewKoalas').append(`
+
+     <tr data-id= "${koalas.id}">
+
       <tr data-ready_to_transfer = "${koalas.ready_to_transfer}" data-id = "${koalas.id}">
+
         <td>${koalas.name}</td>
         <td>${koalas.gender}</td>
         <td>${koalas.age}</td>
@@ -89,7 +115,7 @@ function renderKoalas(koala ) {
   }
   else {
     $('#viewKoalas').append(`
-      <tr>
+      <tr data-id= "${koalas.id}" >
         <td>${koalas.name}</td>
         <td>${koalas.gender}</td>
         <td>${koalas.age}</td>
