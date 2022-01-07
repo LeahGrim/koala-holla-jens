@@ -73,7 +73,11 @@ koalaRouter.put('/:koalaId', (req, res) => {
 // Whatever it is called in router.delete url is what should 
 //be added to the req.params
 
+
+/* router.delete('/:id', (req, res) => {
+
 koalaRouter.delete('/:id', (req, res) => {
+
     // Grab the URL parameter
     console.log('id is', req.params.id)
 
@@ -97,7 +101,7 @@ koalaRouter.delete('/:id', (req, res) => {
         .catch((err) => {
             console.log('DELETE /koala failed!', err)
         })
-})
+}) */
 
 
 module.exports = koalaRouter;
