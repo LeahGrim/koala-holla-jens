@@ -67,6 +67,7 @@ koalaRouter.put('/:koalaId', (req, res) => {
 })
 
 // DELETE
+
 // Delete Koala by id
 //DELETE /koala/:id
 // The value of :id becomes req.params.id
@@ -74,7 +75,7 @@ koalaRouter.put('/:koalaId', (req, res) => {
 //be added to the req.params
 
 
-/* router.delete('/:id', (req, res) => {
+
 
 koalaRouter.delete('/:id', (req, res) => {
 
@@ -101,7 +102,7 @@ koalaRouter.delete('/:id', (req, res) => {
         .catch((err) => {
             console.log('DELETE /koala failed!', err)
         })
-}) */
+})
 
 
 module.exports = koalaRouter;
