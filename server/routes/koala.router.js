@@ -36,7 +36,7 @@ koalaRouter.post('/', (req, res) => {
         res.sendStatus(201);
     })
     .catch(error => {
-        console.log('error adding new koala');
+        console.log('error adding new koala', error);
         res.sendStatus(500);
     })
 })
@@ -56,7 +56,7 @@ koalaRouter.put('/:koalaId', (req, res) => {
         req.params.koalaId //$2
     ];
     pool.query(queryText, queryParams)
-        .then(() => {
+        .then((dbRes) => {
             res.sendStatus(204)
         })
         .catch((err) => {
