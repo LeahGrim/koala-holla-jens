@@ -43,6 +43,7 @@ function setupClickListeners() {
     
     let koalaId = $(this).parents('tr').data('id');
     let ready_to_transfer = $(this).parents('tr').data('ready_to_transfer');
+    
     $.ajax({
       method: 'PUT',
       url: `/koalas/${koalaId}`,
@@ -67,17 +68,33 @@ function setupClickListeners() {
 
 function deleteKoala(){
   let koalaId = $(this).parents('tr').data('id');
-  $.ajax({
-    method: 'DELETE',
-    url: `/koalas/${koalaId}`
+  Swal.fire({
+    title: 'Do you want to save the changes?',
+    showDenyButton: true,
+    confirmButtonText: 'Delete',
+    denyButtonText: `Don't save`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      Swal.fire('Saved!', '', 'success');
+      $.ajax({
+        method: 'DELETE',
+        url: `/koalas/${koalaId}`
+      })
+      .then((res) => {
+        console.log('delete success!!!');
+        getKoalas();
+      })
+      .catch((err) => {
+        console.log('delete failed', err);
+      })
+    } else if (result.isDenied) {
+      Swal.fire('Changes are not saved', '', 'info')
+    }
   })
-  .then((res) => {
-    console.log('delete success!!!');
-    getKoalas();
-  })
-  .catch((err) => {
-    console.log('delete failed', err);
-  })
+  
+  
+ 
 };
 
 function getKoalas(){
