@@ -30,6 +30,30 @@ function setupClickListeners() {
     //now let's call the delete function upon click of the delete button
     $(document).on('click', '.deleteButton', deleteKoala);
   }); 
+
+  $(document).on('click', '.readyToTransfer', function() {
+    console.log('in readyToTransfer');
+    
+    let koalaId = $(this).parents('tr').data('id');
+    let ready_to_transfer = $(this).parents('tr').data('ready_to_transfer');
+    $.ajax({
+      method: 'PUT',
+      url: `/koalas/${koalaId}`,
+      //pass updated version to server 
+      //ie transfer a representation of state
+      data: {
+        ready_to_transfer: true
+      }
+    })
+      .then((response) => {
+        console.log('put success', response);
+        getKoalas()
+      })
+      .catch((err) => {
+        console.log('put failed', err);
+
+      })
+  })
 }
 
 //now let's write the delete button function : 
@@ -56,7 +80,7 @@ function getKoalas(){
     type: 'GET',
     url: '/koalas'
   }).then(function (response) {
-    console.log(response);
+    console.log('response is', response);
     renderKoalas(response);
   }).catch(function (error) {
     console.log('error in GET', error);
@@ -65,7 +89,7 @@ function getKoalas(){
 } // end getKoalas
 
 
-function renderKoalas(koala) {
+function renderKoalas(koala ) {
   console.log('koala is', koala);
   
   $('#viewKoalas').empty();
@@ -73,13 +97,17 @@ function renderKoalas(koala) {
   let koalas = koala[i]
   if(koalas.ready_to_transfer === false){
      $('#viewKoalas').append(`
+
      <tr data-id= "${koalas.id}">
+
+      <tr data-ready_to_transfer = "${koalas.ready_to_transfer}" data-id = "${koalas.id}">
+
         <td>${koalas.name}</td>
         <td>${koalas.gender}</td>
         <td>${koalas.age}</td>
         <td>${koalas.ready_to_transfer}</td>
         <td>${koalas.notes}</td>
-        <td><button class="deleteButton">delete</button></td>
+        <td><button id="deleteButton">delete</button></td>
         <td><button class="readyToTransfer">ready to transfer</button></td>
       </tr>
     `);
