@@ -1,0 +1,36 @@
+body {
+    background-color: bisque;
+    margin: 0;
+}
+
+.form-control {
+    margin: 10px 0;
+}
+
+h1 {
+    text-align: center;
+    font-family: sans-serif;
+    background: hsl(334, 90%, 27%);
+    color: white;
+    padding: 30px 30px 25px 30px;
+    margin-top: 0;
+} 
+
+tr {
+    margin-top: 30px;
+    
+}
+
+
+.info {
+    text-align: center;
+}
+
+img {
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
