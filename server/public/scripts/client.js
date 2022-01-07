@@ -41,9 +41,9 @@ function setupClickListeners() {
         ready_to_transfer: true
       }
     })
-      .then(() => {
-        console.log('put success');
-        renderKoalas();
+      .then((response) => {
+        console.log('put success', response);
+        getKoalas()
       })
       .catch((err) => {
         console.log('put failed', err);
@@ -68,7 +68,7 @@ function getKoalas(){
 } // end getKoalas
 
 
-function renderKoalas(koala) {
+function renderKoalas(koala ) {
   console.log('koala is', koala);
   
   $('#viewKoalas').empty();
