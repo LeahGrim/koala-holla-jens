@@ -67,5 +67,37 @@ koalaRouter.put('/:koalaId', (req, res) => {
 })
 
 // DELETE
+// Delete Koala by id
+//DELETE /koala/:id
+// The value of :id becomes req.params.id
+// Whatever it is called in router.delete url is what should 
+//be added to the req.params
+
+router.delete('/:id', (req, res) => {
+    // Grab the URL parameter
+    console.log('id is', req.params.id)
+
+
+   
+    let queryText = `
+        DELETE FROM "koala"
+        WHERE id=$1; 
+    `;
+
+    let queryParams = [
+        req.params.id,      //$1
+    ]
+
+    pool.query(queryText, queryParams)
+        .then((dbRes) => {
+            //Send back a 👍🏼
+            res.sendStatus(204); // 204 = No Content 
+
+        })
+        .catch((err) => {
+            console.log('DELETE /koala failed!', err)
+        })
+})
+
 
 module.exports = koalaRouter;
