@@ -103,25 +103,25 @@ function renderKoalas(koala ) {
 
       <tr data-ready_to_transfer = "${koalas.ready_to_transfer}" data-id = "${koalas.id}">
 
-        <td>${koalas.name}</td>
-        <td>${koalas.gender}</td>
-        <td>${koalas.age}</td>
-        <td>${koalas.ready_to_transfer}</td>
-        <td>${koalas.notes}</td>
-        <td><button id="deleteButton">delete</button></td>
-        <td><button class="readyToTransfer">ready to transfer</button></td>
+        <td class= "tablerow">${koalas.name}</td>
+        <td class= "tablerow">${koalas.gender}</td>
+        <td class= "tablerow">${koalas.age}</td>
+        <td class= "tablerow">${koalas.ready_to_transfer}</td>
+        <td class= "tablerow">${koalas.notes}</td>
+        <td class= "tablerow"><button id="deleteButton">delete</button></td>
+        <td class= "tablerow"><button class="readyToTransfer">ready to transfer</button></td>
       </tr>
     `);
   }
   else {
     $('#viewKoalas').append(`
       <tr data-id= "${koalas.id}" >
-        <td>${koalas.name}</td>
-        <td>${koalas.gender}</td>
-        <td>${koalas.age}</td>
-        <td>${koalas.ready_to_transfer}</td>
-        <td>${koalas.notes}</td>
-        <td><button class="deleteButton">delete</button></td>
+        <td class= "tablerow">${koalas.name}</td>
+        <td class= "tablerow">${koalas.gender}</td>
+        <td class= "tablerow">${koalas.age}</td>
+        <td class= "tablerow">${koalas.ready_to_transfer}</td>
+        <td class= "tablerow">${koalas.notes}</td>
+        <td class= "tablerow"><button class="deleteButton">delete</button></td>
       </tr>
     `);
   }
